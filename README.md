@@ -1,1 +1,1 @@
-# ebs
+EBS Project

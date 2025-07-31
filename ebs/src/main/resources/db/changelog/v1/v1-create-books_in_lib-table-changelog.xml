@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--
+    Таблица books_in_lib - книги в библиотеке;
+    id - ID книги в библиотеке;
+    book_id - ID книги в таблице books.
+    -->
+
+    <changeSet id="v1-1" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="books_in_lib"/>
+            </not>
+        </preConditions>
+        
+        <createTable tableName="books_in_lib">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="books_in_lib" baseColumnNames="book_id"
+                                 constraintName="book_in_lib_id_book_id"
+                                 referencedTableName="books" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="v1-2" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="books_in_lib"/>
+        </preConditions>
+
+        <loadData tableName="books_in_lib" file="db/data/books_in_lib-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

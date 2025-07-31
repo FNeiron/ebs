@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--
+    Таблица readers - все читатели;
+    id - ID читателя;
+    name - имя читателя;
+    email - email читателя.
+    -->
+
+    <changeSet id="v1-1" author="Fazylov Ruslan">
+        <preConditions>
+            <not>
+                <tableExists tableName="readers"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="readers">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v1-2" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="readers"/>
+        </preConditions>
+
+        <loadData tableName="readers" file="db/data/readers-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

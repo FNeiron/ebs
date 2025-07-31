@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--
+    Таблица stories - все произведения;
+    id - ID произведения;
+    genre_id - ID жанра в таблице genres;
+    name - название произведения.
+    -->
+
+    <changeSet id="v1-1" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="stories"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="stories">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="genre_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="stories" baseColumnNames="genre_id"
+                                 constraintName="story_id_genre_id"
+                                 referencedTableName="genres" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="v1-2" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="stories"/>
+        </preConditions>
+
+        <loadData tableName="stories" file="db/data/stories-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

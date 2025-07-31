@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--
+    Таблица books - книги;
+    id - ID книги;
+    name - название книги;
+    isbn - ISBN книги;
+    publication_date - дата публикации книги.
+    -->
+
+    <changeSet id="v1-1" author="Fazylov Ruslan">
+        <preConditions>
+            <not>
+                <tableExists tableName="books"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="books">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="isbn" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="publication_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v1-2" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="books"/>
+        </preConditions>
+
+        <loadData tableName="books" file="db/data/books-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

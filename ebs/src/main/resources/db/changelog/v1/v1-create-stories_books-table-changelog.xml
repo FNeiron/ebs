@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--
+    Таблица stories_books - все произведения;
+    id - ID связки произведение-книга;
+    story_id - ID произведения в таблице stories;
+    book_id - ID книги в таблице books.
+    -->
+
+    <changeSet id="v1-1" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="stories_books"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="stories_books">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="story_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="stories_books" baseColumnNames="story_id"
+                                 constraintName="stories_books_id_story_id"
+                                 referencedTableName="stories" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="stories_books" baseColumnNames="book_id"
+                                 constraintName="stories_books_id_book_id"
+                                 referencedTableName="books" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="v1-2" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="stories_books"/>
+        </preConditions>
+
+        <loadData tableName="stories_books" file="db/data/stories_books-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

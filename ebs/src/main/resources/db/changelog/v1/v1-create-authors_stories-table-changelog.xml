@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--
+    Таблица authors_stories - пересвязочная таблица автором и историй;
+    id - ID связки;
+    author_id - ID автора в таблице authors;
+    story_id - ID произведения в таблице stories.
+    -->
+
+    <changeSet id="v1-1" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="authors_stories"/>
+            </not>
+        </preConditions>
+        <createTable tableName="authors_stories">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="author_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="story_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="authors_stories" baseColumnNames="author_id"
+                                 constraintName="authors_stories_id_author_id"
+                                 referencedTableName="authors" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="authors_stories" baseColumnNames="story_id"
+                                 constraintName="authors_stories_id_story_id"
+                                 referencedTableName="stories" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="v1-2" author="Ruslan Fazylov">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="authors_stories"/>
+        </preConditions>
+
+        <loadData tableName="authors_stories" file="db/data/authors_stories-data.csv"/>
+    </changeSet>
+
+</databaseChangeLog>

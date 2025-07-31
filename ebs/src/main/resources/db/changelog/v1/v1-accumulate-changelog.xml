@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--
+    Аккумулирующий файл, создающий все таблицы этой версии.
+    -->
+
+    <include file="v1-create-authors-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-genres-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-stories-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-authors_stories-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-books-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-stories_books-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-books_in_lib-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-readers-table-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="v1-create-journal-table-changelog.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

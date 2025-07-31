@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--
+    Таблица journal - все жанры;
+    id - ID записи в journal;
+    book_in_lib_id - ID книги в библиотеке;
+    reader_id - ID читателя в таблице readers;
+    start_date - дата взятия книги из библиотеки;
+    end_date - дата возврата книги в библиотеку.
+    -->
+
+    <changeSet id="v1-1" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="journal"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="journal">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="book_in_lib_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reader_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="date">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="journal" baseColumnNames="book_in_lib_id"
+                                 constraintName="record_id_book_in_lib_id"
+                                 referencedTableName="books_in_lib" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="journal" baseColumnNames="reader_id"
+                                 constraintName="record_id_reader_id"
+                                 referencedTableName="readers" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="v1-2" author="Fazylov Ruslan">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="journal"/>
+        </preConditions>
+
+        <loadData tableName="journal" file="db/data/journal-data.csv"/>
+    </changeSet>
+</databaseChangeLog>

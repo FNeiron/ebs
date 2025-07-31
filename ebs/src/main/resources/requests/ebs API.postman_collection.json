@@ -1,0 +1,983 @@
+{
+	"info": {
+		"_postman_id": "28f07548-76eb-4060-a967-f2d81e332cd1",
+		"name": "ebs API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39242392"
+	},
+	"item": [
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "getExistAuthor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/authors/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"authors",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNoExistAuthor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/authors/get/500",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"authors",
+								"get",
+								"500"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/authors/get/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"authors",
+								"get",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAuthor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Тестовое имя\",\r\n\"nickname\": \"Тестовый псевдоним\",\r\n\"birthday\": \"2020-10-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/authors/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"authors",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAuthor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Тестовое обновленное имя\",\r\n\"nickname\": \"Тестовый псевдоним\",\r\n\"birthday\": \"2020-10-31\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/authors/update/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"authors",
+								"update",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAuthor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/authors/delete/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"authors",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "getBook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/books/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBooks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/books/get/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books",
+								"get",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"name\": \"Test Book\",\r\n    \"stories\": [\r\n        {\r\n            \"id\": 2,\r\n            \"authors\": [\r\n                {\r\n                    \"id\": 3,\r\n                    \"name\": \"Tatianova Tatiana Tatovna\",\r\n                    \"nickname\": \"Miranda\",\r\n                    \"birthday\": \"2001-12-12\"\r\n                },\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"Fazylov Ruslan Tahirovich\",\r\n                    \"nickname\": \"Faz\",\r\n                    \"birthday\": \"2002-09-02\"\r\n                }\r\n            ],\r\n            \"genre\": {\r\n                \"id\": 14,\r\n                \"name\": \"science\"\r\n            },\r\n            \"name\": \"Computer Science\"\r\n        }\r\n    ],\r\n    \"isbn\": \"978-3-16-148410-0\",\r\n    \"publicationDate\": \"2022-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/books/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBook",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Updated Test Book\",\r\n    \"stories\": [\r\n        {\r\n            \"id\": 2,\r\n            \"authors\": [\r\n                {\r\n                    \"id\": 3,\r\n                    \"name\": \"Tatianova Tatiana Tatovna\",\r\n                    \"nickname\": \"Miranda\",\r\n                    \"birthday\": \"2001-12-12\"\r\n                },\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"Fazylov Ruslan Tahirovich\",\r\n                    \"nickname\": \"Faz\",\r\n                    \"birthday\": \"2002-09-02\"\r\n                }\r\n            ],\r\n            \"genre\": {\r\n                \"id\": 14,\r\n                \"name\": \"science\"\r\n            },\r\n            \"name\": \"Computer Science\"\r\n        }\r\n    ],\r\n    \"isbn\": \"978-3-16-148410-0\",\r\n    \"publicationDate\": \"2022-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/books/update/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books",
+								"update",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBook",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/books/delete/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BookInLib",
+			"item": [
+				{
+					"name": "getBookInLib",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/books_in_lib/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books_in_lib",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBooksInLib",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/books_in_lib/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books_in_lib",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createBookInLib",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"book\": {\r\n        \"id\": 3,\r\n        \"stories\": null,\r\n        \"name\": \"ForTest\",\r\n        \"isbn\": \"200-200-2\",\r\n        \"publicationDate\": \"2024-10-20\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/books_in_lib/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books_in_lib",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBookInLib",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": {\r\n        \"id\": 2,\r\n        \"stories\": null,\r\n        \"name\": \"ForTest\",\r\n        \"isbn\": \"200-200-2\",\r\n        \"publicationDate\": \"2024-10-20\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/books_in_lib/update/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books_in_lib",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBookInLib",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/books_in_lib/delete/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books_in_lib",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "getGenre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/genres/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"genres",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllGenres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/genres/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"genres",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createGenre",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ChatGPT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/genres/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"genres",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateGenre",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Updated chatGPT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/genres/update/18",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"genres",
+								"update",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteGenre",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/genres/delete/18",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"genres",
+								"delete",
+								"18"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Journal",
+			"item": [
+				{
+					"name": "getJournal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/journal/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"journal",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllJournal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/journal/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"journal",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createJournal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": {\r\n        \"id\": 2,\r\n        \"book\": {\r\n            \"id\": 2,\r\n            \"name\": \"Peneme\",\r\n            \"isbn\": \"192-202-222\",\r\n            \"publicationDate\": \"2020-12-13\"\r\n        }\r\n    },\r\n    \"reader\": {\r\n        \"id\": 3,\r\n        \"name\": \"Kaplina Elena Kaplinova\",\r\n        \"email\": \"elena.kaplin@book.net\"\r\n    },\r\n    \"startDate\": \"2001-12-12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/journal/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"journal",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateJournal",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": {\r\n        \"id\": 2,\r\n        \"book\": {\r\n            \"id\": 2,\r\n            \"name\": \"Peneme\",\r\n            \"isbn\": \"192-202-222\",\r\n            \"publicationDate\": \"2020-12-13\"\r\n        }\r\n    },\r\n    \"reader\": {\r\n        \"id\": 3,\r\n        \"name\": \"Kaplina Elena Kaplinova\",\r\n        \"email\": \"elena.kaplin@book.net\"\r\n    },\r\n    \"startDate\": \"2001-12-12\",\r\n    \"endDate\": \"2024-10-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/journal/update/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"journal",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteJournal",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/journal/delete/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"journal",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reader",
+			"item": [
+				{
+					"name": "getReader",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/readers/get/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"readers",
+								"get",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllReaders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/readers/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"readers",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createReader",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Albert\",\r\n    \"email\": \"albert@malbert.bert\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/readers/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"readers",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateReader",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Belebert\",\r\n    \"email\": \"albert@malbert.bert\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/readers/update/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"readers",
+								"update",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteReader",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/readers/delete/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"readers",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Story",
+			"item": [
+				{
+					"name": "getStory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/stories/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"stories",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllStories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/stories/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"stories",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createStory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authors\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Fazylov Ruslan Tahirovich\",\r\n            \"nickname\": \"Faz\",\r\n            \"birthday\": \"2002-09-02\"\r\n        }\r\n    ],\r\n    \"genre\": {\r\n        \"id\": 7,\r\n        \"name\": \"humor\"   \r\n    },\r\n    \"name\": \"The story about the Postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/stories/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"stories",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStory",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authors\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Fazylov Ruslan Tahirovich\",\r\n            \"nickname\": \"Faz\",\r\n            \"birthday\": \"2002-09-02\"\r\n        },\r\n        {\r\n            \"name\": \"Megan Fix\",\r\n            \"nickname\": \"user_not_from_db\",\r\n            \"birthday\": \"2024-10-24\"\r\n        }\r\n    ],\r\n    \"genre\": {\r\n        \"id\": 7,\r\n        \"name\": \"humor\"   \r\n    },\r\n    \"name\": \"The story about the Postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/stories/update/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"stories",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteStory",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/stories/delete/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"stories",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Queue",
+			"item": [
+				{
+					"name": "getJournal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/journal/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"journal",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "returnBook",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/queue?bookIsbn=200-201-333&readerId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"queue"
+							],
+							"query": [
+								{
+									"key": "bookIsbn",
+									"value": "200-201-333"
+								},
+								{
+									"key": "readerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "**Книга:**  \nISBN: 200-201-333  \nReaderId: 1\n\n| **id** | **Journal** |\n| --- | --- |\n| 1 | Книга взята 2024-09-25.  <br>Не возвращена. |\n| 2 | Книга взята 2024-09-26.  <br>Не возвращена. |\n\n| **Номер вызова возврата книги** |  |\n| --- | --- |\n| 1 | Книга, взятая 2024-09-25, возвращается текущей датой.  <br>  <br>В логах INFO сообщение: Book returned successfully. |\n| 2 | Книга, взятая 2024-09-26, возвращается текущей датой.  <br>В логах INFO сообщение: Book returned successfully. |\n| 3, 4, 5... | В логе WARN сообщение: Book already returned. |\n\nПри получении сообщения в логах пишется:  \nINFO Received book XML:\\\\{MESSAGE}\n\nЕсли полученное сообщение некорректное, в логах может быть:\n\nERROR Received non-text message, ignoring.\n\nERROR Error parsing book XML:\\\\n{MESSAGE}\n\nERROR Invalid book XML format, expected 'bookIsbn' and 'readerId' elements."
+		}
+	]
+}

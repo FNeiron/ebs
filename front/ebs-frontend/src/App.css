@@ -1,0 +1,33 @@
+/* Убедитесь, что html и body занимают всю высоту */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Основной контейнер страницы */
+  #page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Высота экрана */
+  }
+  
+  /* Контейнер для всего содержимого страницы */
+  #content-wrap {
+    flex: 1; /* Контент растягивается и занимает все оставшееся пространство */
+    overflow-y: auto; /* Добавляем вертикальную прокрутку для контента */
+  }
+  
+  /* Стили для футера */
+  .footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .action-column {
+    width: 228px;
+}
+li {
+    cursor: pointer;
+}
